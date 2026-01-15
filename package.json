@@ -1,0 +1,25 @@
+{
+  "name": "shared-persistent-connection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "persistent-connection"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.28.0",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@microsoft/fetch-event-source": "^2.0.1"
+  },
+  "volta": {
+    "node": "25.3.0"
+  }
+}
