@@ -50,18 +50,6 @@ export class SharedPersistentConnection {
 
     this.state = ConnectionState.Connecting
     this.attemptToBeLeader()
-
-    console.log('SharedPersistentConnection constructor');
-    navigator.locks.query()
-      .then((state) => {
-        console.log("所有锁的状态:", state);
-
-        // 查看已持有的锁
-        console.log("持有的锁:", state.held);
-
-        // 查看正在等待的锁请求
-        console.log("等待的锁:", state.pending);
-      });
   }
 
   private abortConnection() {
@@ -69,7 +57,7 @@ export class SharedPersistentConnection {
   }
 
   private launch() {
-    if (!this.isLeader || this.state === ConnectionState.Closed) {
+    if (!this.isLeader || this.isClosed()) {
       return
     }
     this.abortConnection()
@@ -102,9 +90,16 @@ export class SharedPersistentConnection {
     }
   }
 
+  private isClosed() {
+    return this.state === ConnectionState.Closed
+  }
+
   private attemptToBeLeader() {
     const lockKey = getSelfKey(this.url, 'lock')
     navigator.locks.request(lockKey, async () => {
+      if (this.isClosed()) {
+        return
+      }
       this.isLeader = true
       this.launch()
 
@@ -117,7 +112,7 @@ export class SharedPersistentConnection {
   }
 
   public close() {
-    if (this.state === ConnectionState.Closed) {
+    if (this.isClosed()) {
       return
     }
     this.state = ConnectionState.Closed
