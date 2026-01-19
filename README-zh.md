@@ -9,7 +9,7 @@
 
 特色
 - 基于[@microsoft/fetch-event-source](https://github.com/Azure/fetch-event-source/blob/main/package.json)，SSE支持多种请求（GET，POST等），自定义头部等等
-- 基于`navigator.locks`，实现浏览器多标签页之间的协调，确保只有一个标签页连接SSE服务器
+- 基于`navigator.locks`，实现浏览器多标签页之间的协调，确保只有一个标签页连接SSE服务器，当连接sse的标签页关闭/刷新，下一个排队的标签自动发起新的sse
 - 基于`BroadcastChannel`，实现浏览器多标签页之间的通信，确保所有标签页都能收到SSE服务器的消息
 
 ## 🚀 快速开始

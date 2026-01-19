@@ -10,7 +10,7 @@ However, this problem can be mitigated by upgrading to HTTP/2.
 
 ## Features
 - Based on [@microsoft/fetch-event-source](https://github.com/Azure/fetch-event-source/blob/main/package.json), SSE supports multiple request methods (GET, POST, etc.), custom headers, and more.
-- Utilizes `navigator.locks` to coordinate between multiple browser tabs, ensuring only one tab connects to the SSE server.
+- Utilizes `navigator.locks` to coordinate between multiple browser tabs, ensuring only one tab connects to the SSE server. When the tab connected to SSE is closed/refreshed, the next queued tab will automatically initiate a new SSE
 - Uses `BroadcastChannel` for communication between multiple browser tabs, ensuring all tabs receive messages from the SSE server.
 
 ## 🚀 Quick Start
